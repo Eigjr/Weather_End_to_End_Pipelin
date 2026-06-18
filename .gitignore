@@ -1,0 +1,57 @@
+# ── Virtual environments ──────────────────────────────────────────────────────
+me/
+datafile/
+
+
+# ── Terraform secrets ─────────────────────────────────────────────────────────
+# tfstate files contain real infrastructure details (IPs, resource IDs, secrets)
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+
+# tfvars files typically hold secret variable values (passwords, API keys, tokens)
+terraform/terraform.tfvars
+
+# Terraform working directory (downloaded providers — large, reproducible)
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+
+# ── Environment variable files ────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Python artefacts ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.pytest_cache
+
+# ── dbt artefacts ─────────────────────────────────────────────────────────────
+# Compiled SQL and run artefacts — fully reproducible from source
+transformation/target/
+transformation/dbt_nova/target/
+transformation/logs/
+
+# dbt profiles often contain database credentials
+# (keep profiles.yml out of version control; use environment variables instead)
+transformation/dbt_nova/profiles.yml
+
+# ── Airflow runtime files ─────────────────────────────────────────────────────
+logs/
+airflow/airfloww/
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+# Never commit actual images or layer caches
+*.tar
+
+# ── OS and editor noise ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+image/.$architectural diagram.png.bkp
+image/.$Untitled Diagram.png.bkp
