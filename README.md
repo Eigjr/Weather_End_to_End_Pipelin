@@ -36,7 +36,7 @@ The primary objective is to transform raw operational weather data into actionab
 ![alt text](https://github.com/Eigjr/Weather_End_to_End_Pipelin/blob/79d00fe8711241c4985b8de3588a74c1a49e6871/image/Untitled%20Diagram.png?raw=true)
 
 
-![alt text]https://github.com/Eigjr/Weather_End_to_End_Pipelin/blob/d48dfe11b8d9885afd747bc8bd4af17aea929818/image/architectural%20diagram.png?raw=true)
+![alt text](https://github.com/Eigjr/Weather_End_to_End_Pipelin/blob/d48dfe11b8d9885afd747bc8bd4af17aea929818/image/architectural%20diagram.png?raw=true)
 
 **DAG chain** (`dags/weather_data_pipeline`):
 
