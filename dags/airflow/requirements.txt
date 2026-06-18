@@ -1,0 +1,7 @@
+requests
+pandas
+pyarrow
+minio
+psycopg2-binary
+asyncpg
+apache-airflow-providers-docker
