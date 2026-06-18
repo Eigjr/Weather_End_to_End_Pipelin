@@ -33,38 +33,10 @@ The primary objective is to transform raw operational weather data into actionab
 
 ## Architecture
 
-```![alt text]/home/ema-i/Desktop/test_work/image/Untitled Diagram.png
-┌──────────────────────────────────────────────────────────────────────────┐
-│  Docker Compose                                                           │
-│                                                                           │
-│  ┌─────────────┐  Extract   ┌──────────────┐  Load   ┌────────────────┐  │
-│  │  Weather    │ ─────────► │  MinIO       │ ──────► │  PostgreSQL    │  │
-│  │  API        │  JSON/CSV  │  raw-data/   │  rows   │  (load stage)  │  │
-│  └─────────────┘            └──────────────┘         └───────┬────────┘  │
-│                                                               │           │
-│                                                          Transform        │
-│                                                               │           │
-│                                                       ┌───────▼────────┐  │
-│                                                       │  dbt           │  │
-│                                                       │  dbt_nova/     │  │
-│                                                       └───────┬────────┘  │
-│                                                               │           │
-│                                                       ┌───────▼────────┐  │
-│                                                       │  PostgreSQL    │  │
-│                                                       │  (marts)       │  │
-│                                                       └────────────────┘  │
-│                                                               │           │
-│  ◄──────────────  Airflow orchestration (weather_data_pipeline DAG) ───►  │
-│                                                               │           │
-│                                                         Email alert       │
-└──────────────────────────────────────────────────────────────────────────┘
+```![Pipeline Architecture](image/Untitled Diagram.png)
 
-  Infrastructure
-  ├── Docker Compose    local container orchestration
-  ├── GitHub Actions    CI/CD — lint, test, build, push to Docker Hub
-  └── Terraform         cloud provisioning (planned)
-```
-``![alt text] /home/ema-i/Desktop/test_work/image/architectural diagram.png
+
+``![Infrastructure](image/architectural diagram.png)
 
 **DAG chain** (`dags/weather_data_pipeline`):
 
