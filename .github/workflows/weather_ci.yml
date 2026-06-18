@@ -1,0 +1,55 @@
+# .github/workflows/deploy.yml
+name: Deploy Nova Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install apache-airflow dbt-postgres flake8
+
+      - name: Lint DAGs
+        run: flake8 airflow/dags/
+
+      - name: Validate DAGs parse
+        run: python -c "
+          from airflow.models import DagBag
+          db = DagBag('airflow/dags/')
+          assert not db.import_errors, db.import_errors
+        "
+
+      - name: Compile dbt
+        run: |
+          cd transformation
+          dbt compile --project-dir dbt_nova --profiles-dir .dbt
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Copy DAGs to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "airflow/dags/"
+          target: "/opt/nova_pipeline/airflow/dags/"
+
+      - name: Rebuild dbt image
+        run: |
+          docker build -t nova-dbt:latest ./transformation
+          docker push nova-dbt:latest
