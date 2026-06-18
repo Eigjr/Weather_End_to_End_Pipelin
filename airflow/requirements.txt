@@ -1,0 +1,6 @@
+requests
+pandas
+pyarrow
+minio
+psycopg2-binary
+asyncpg
