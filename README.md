@@ -33,7 +33,7 @@ The primary objective is to transform raw operational weather data into actionab
 
 ## Architecture
 
-```![Pipeline Architecture](image/Untitled Diagram.png)
+```![Pipeline Architecture](https://github.com/Eigjr/Weather_End_to_End_Pipelin/blob/79d00fe8711241c4985b8de3588a74c1a49e6871/image/Untitled%20Diagram.png)
 
 
 ``![Infrastructure](image/architectural diagram.png)
