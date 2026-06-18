@@ -1,0 +1,13 @@
+# transformation/.dbt/profiles.yml
+dbt_nova:
+  outputs:
+    dev:
+      type: postgres
+      host: data-postgres
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: nova_db
+      schema: raw_data
+      threads: 4
+  target: dev
